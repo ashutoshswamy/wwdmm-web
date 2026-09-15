@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { ArrowLeft, ArrowRight, CircleCheck } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { businessTypes, goals, targetMarkets } from "@/lib/data";
 
 type FormState = {
@@ -58,6 +59,18 @@ export function ContactForm() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const stepRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        stepRef.current,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }
+      );
+    },
+    { scope: stepRef, dependencies: [step] }
+  );
 
   const canAdvance =
     (step === 0 && form.businessType !== "") ||
@@ -83,7 +96,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-start gap-4 rounded-2xl border border-mist bg-paper-raised p-8">
+      <div className="flex flex-col items-start gap-4 rounded-2xl border border-mist bg-paper-raised p-6 sm:p-8">
         <CircleCheck size={32} className="text-signal" strokeWidth={1.5} />
         <h3 className="font-display text-2xl">Filed. We&apos;re on it.</h3>
         <p className="text-sm leading-relaxed text-ink-soft">
@@ -97,7 +110,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-8 rounded-2xl border border-mist bg-paper-raised p-8"
+      className="flex flex-col gap-8 rounded-2xl border border-mist bg-paper-raised p-6 sm:p-8"
     >
       <div className="flex items-center gap-2">
         {steps.map((label, i) => (
@@ -114,13 +127,7 @@ export function ContactForm() {
         ))}
       </div>
 
-      <motion.div
-        key={step}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="min-h-[180px]"
-      >
+      <div ref={stepRef} className="min-h-[180px]">
         {step === 0 && (
           <div className="flex flex-col gap-4">
             <label className="font-display text-xl">
@@ -204,7 +211,7 @@ export function ContactForm() {
             />
           </div>
         )}
-      </motion.div>
+      </div>
 
       <div className="flex items-center justify-between">
         <button

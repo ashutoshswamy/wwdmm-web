@@ -32,7 +32,7 @@ export function NavBar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -46,7 +46,7 @@ export function NavBar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <ThemeToggle />
           <Link
             href="/contact"
@@ -56,7 +56,7 @@ export function NavBar() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-3 xl:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -70,7 +70,7 @@ export function NavBar() {
       </div>
 
       {open ? (
-        <div className="flex flex-col gap-1 border-t border-mist bg-paper px-6 py-4 lg:hidden">
+        <div className="flex flex-col gap-1 border-t border-mist bg-paper px-6 py-4 xl:hidden">
           {navLinks.map((link) => (
             <Link
               key={link.href}

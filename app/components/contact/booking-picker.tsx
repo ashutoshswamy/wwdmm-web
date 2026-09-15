@@ -26,7 +26,7 @@ export function BookingPicker() {
   if (confirmed && dayIndex !== null && slot) {
     const day = days[dayIndex];
     return (
-      <div className="flex flex-col items-start gap-3 rounded-2xl border border-mist bg-paper-raised p-8">
+      <div className="flex flex-col items-start gap-3 rounded-2xl border border-mist bg-paper-raised p-6 sm:p-8">
         <CalendarCheck size={28} className="text-signal" strokeWidth={1.5} />
         <h3 className="font-display text-2xl">Call booked.</h3>
         <p className="text-sm text-ink-soft">
@@ -42,7 +42,7 @@ export function BookingPicker() {
   }
 
   return (
-    <div className="flex flex-col gap-6 rounded-2xl border border-mist bg-paper-raised p-8">
+    <div className="flex flex-col gap-6 rounded-2xl border border-mist bg-paper-raised p-6 sm:p-8">
       <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-ink-soft">
         <Clock size={14} />
         Strategy call · 30 min

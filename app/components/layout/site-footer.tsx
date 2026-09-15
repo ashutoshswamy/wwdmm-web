@@ -74,8 +74,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="border-t border-paper/10 pt-6 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-paper/40">
+        <div className="flex flex-col gap-3 border-t border-paper/10 pt-6 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-paper/40 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} World Widee Digital Media Marketing. All rights reserved.</span>
+          <div className="flex gap-4">
+            <Link href="/terms" className="hover:text-paper">
+              Terms of Service
+            </Link>
+            <Link href="/privacy" className="hover:text-paper">
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
