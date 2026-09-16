@@ -3,13 +3,14 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/app/components/layout/nav-bar";
 import { SiteFooter } from "@/app/components/layout/site-footer";
+import { headquarters, contact } from "@/lib/data";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
-const siteUrl = "https://wwdmm.com";
+const siteUrl = "https://worldwideedigital.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,12 +36,14 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "World Widee Digital",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1730, height: 909 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "World Widee Digital Media Marketing - Media, PR & Global Trade",
     description:
       "Two decades of media and PR experience, one working bridge to global trade.",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -51,6 +54,26 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "World Widee Digital Media Marketing",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/logo.png`,
+  description:
+    "PR, media, celebrity promotion, import/export and event curation agency based in Maharashtra, India.",
+  email: contact.email,
+  telephone: contact.phones[0],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: headquarters.line1,
+    addressRegion: "Maharashtra",
+    addressCountry: "IN",
+  },
+  sameAs: [],
 };
 
 const themeInitScript = `
@@ -71,6 +94,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <NavBar />
